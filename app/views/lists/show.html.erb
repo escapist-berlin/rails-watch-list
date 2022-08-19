@@ -1,0 +1,20 @@
+<%= link_to "Back to all lists", lists_path %>
+<%= link_to "Delete this list",
+  list_path(@list),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+<hr>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <h2>You are inside the <strong><em><%= @list.name %></em></strong> list</h2>
+      <ul>
+        <% @list.bookmarks.each do |bookmark| %>
+        <li><strong>Movie: </strong><%= bookmark.movie.title %></li>
+        <p><strong>Your comment: </strong><%= bookmark.comment %></p>
+        <% end %>
+      </ul>
+      <div><%= link_to "Add a movie", new_list_bookmark_path(@list) %></div>
+    </div>
+  </div>
+</div>
